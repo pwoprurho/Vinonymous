@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Suggestion Box | Vinicius</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="admin-body">
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-container">
+            <div class="logo-3d-center">
+                <div class="logo-3d" id="loginLogo3d"></div>
+            </div>
+            <div class="login-header">
+                <h2>🔐 Admin Login</h2>
+                <p>Enter your credentials to access the admin panel</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="username" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Enter password">
+                </div>
+                <div id="loginError" class="login-error hidden"></div>
+                <button type="submit" class="login-btn">
+                    <span>Sign In</span>
+                    <span class="btn-icon">→</span>
+                </button>
+            </form>
+            <a href="/" class="back-home-link">← Back to submission form</a>
+        </div>
+    </div>
+
+    <div id="adminContent" class="admin-container hidden">
+        <div class="logo-3d-center">
+            <div class="logo-3d" id="adminLogo3d"></div>
+        </div>
+        <header class="admin-header">
+            <div class="header-left">
+                <h1>📥 Suggestion Box Admin</h1>
+                <a href="/" class="back-link">← Back to submission form</a>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+            <div class="stats-bar" id="statsBar">
+                <div class="stat-item">
+                    <span class="stat-value" id="totalCount">0</span>
+                    <span class="stat-label">Total</span>
+                </div>
+                <div class="stat-item unread">
+                    <span class="stat-value" id="unreadCount">0</span>
+                    <span class="stat-label">Unread</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="unread">Unread</button>
+            <button class="filter-btn" data-filter="General">General</button>
+            <button class="filter-btn" data-filter="Feedback">Feedback</button>
+            <button class="filter-btn" data-filter="Idea">Idea</button>
+            <button class="filter-btn" data-filter="Concern">Concern</button>
+            <button class="filter-btn" data-filter="Praise">Praise</button>
+            <button class="filter-btn" data-filter="Question">Question</button>
+        </div>
+
+        <main class="messages-container">
+            <div id="messagesList" class="messages-list">
+                <!-- Messages will be loaded here -->
+            </div>
+            <div id="emptyState" class="empty-state hidden">
+                <div class="empty-icon">📭</div>
+                <h2>No messages yet</h2>
+                <p>Anonymous messages will appear here once submitted.</p>
+            </div>
+            <div id="loadingState" class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading messages...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="logo3d.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // Initialize logos for admin page
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initLogo3D === 'function') {
+                initLogo3D('loginLogo3d');
+                initLogo3D('adminLogo3d');
+            }
+        });
+    </script>
+</body>
+</html>

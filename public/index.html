@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Suggestion Box | Vinicius</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <!-- 3D Background Canvas -->
+    <div id="mailbox3d"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo-3d-center">
+                <div class="logo-3d" id="logo3d"></div>
+            </div>
+            <div class="header-content-center">
+                <h1>Anonymous Suggestion Box</h1>
+                <p class="subtitle">Share your thoughts, ideas, or feedback completely anonymously. Your voice matters.</p>
+                <a href="/admin.html" class="view-messages-link">
+                    <span>📥</span> View All Messages
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <form id="suggestionForm" class="suggestion-form">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
+                        <option value="General">General</option>
+                        <option value="Feedback">Feedback</option>
+                        <option value="Idea">Idea</option>
+                        <option value="Concern">Concern</option>
+                        <option value="Praise">Praise</option>
+                        <option value="Question">Question</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        rows="6" 
+                        placeholder="What's on your mind? Share your anonymous message here..."
+                        required
+                    ></textarea>
+                    <div class="char-count"><span id="charCount">0</span> / 1000</div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Submit Anonymously</span>
+                    <span class="btn-icon">→</span>
+                </button>
+            </form>
+
+            <div id="successMessage" class="success-message hidden">
+                <div class="success-icon">✓</div>
+                <h2>Message Sent!</h2>
+                <p>Your anonymous message has been submitted successfully.</p>
+                <button onclick="resetForm()" class="new-message-btn">Send Another Message</button>
+            </div>
+        </main>
+
+        <footer>
+            <div class="privacy-notice">
+                <span class="privacy-icon">🔒</span>
+                <p>Your privacy is protected. No personal information is collected.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="logo3d.js"></script>
+    <script src="mailbox3d.js"></script>
+</body>
+</html>
