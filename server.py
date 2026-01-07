@@ -8,11 +8,11 @@ import hashlib
 import secrets
 
 app = Flask(__name__, static_folder='public', static_url_path='')
-app.secret_key = secrets.token_hex(32)  # Generate a secure secret key
+app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(32))
 
-# Admin credentials (in production, use environment variables and proper hashing)
-ADMIN_USERNAME = 'admin'
-ADMIN_PASSWORD_HASH = hashlib.sha256('admin123'.encode()).hexdigest()  # Default password: admin123
+# Admin credentials from environment variables (with defaults for development)
+ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
+ADMIN_PASSWORD_HASH = os.environ.get('ADMIN_PASSWORD_HASH', hashlib.sha256('admin123'.encode()).hexdigest())
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 DB_FILE = os.path.join(DATA_DIR, 'messages.db')
@@ -186,7 +186,9 @@ def get_stats():
     return jsonify(stats)
 
 if __name__ == '__main__':
-    print('🎯 Anonymous Suggestion Box running at http://localhost:3000')
-    print('📝 Submit suggestions at http://localhost:3000')
-    print('👀 View submissions at http://localhost:3000/admin.html')
-    app.run(host='0.0.0.0', port=3000, debug=True)
+    port = int(os.environ.get('PORT', 3000))
+    debug = os.environ.get('FLASK_DEBUG', 'true').lower() == 'true'
+    print('🎯 Anonymous Suggestion Box running at http://localhost:' + str(port))
+    print('📝 Submit suggestions at http://localhost:' + str(port))
+    print('👀 View submissions at http://localhost:' + str(port) + '/admin.html')
+    app.run(host='0.0.0.0', port=port, debug=debug)
