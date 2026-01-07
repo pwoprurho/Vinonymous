@@ -61,6 +61,23 @@ header {
     margin-bottom: 24px;
 }
 
+.logo-center {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.logo-img {
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
 .header-content-center {
     text-align: center;
 }
@@ -726,6 +743,14 @@ footer {
 
 .login-container .logo-3d-center {
     margin-bottom: 20px;
+}
+
+.login-container .logo-center {
+    margin-bottom: 20px;
+}
+
+.login-container .logo-img {
+    width: 100px;
 }
 
 .login-header h2 {
